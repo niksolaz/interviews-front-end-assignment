@@ -99,5 +99,31 @@ comments. Enable users to add comments and rate the recipe, displaying the avera
 comments.
 
 ## How to run
+For convenience I opted for a process manager [pm2](https://pm2.io/docs/runtime/overview/) to be able to start both Client and Server in a single command. 
+It's not mandatory.
+So if you want install pm2 you can do this:
+```
+npm install pm2 -g
+```
+otherwise skip this step and start each process individually.
 
-...
+For use PM2:
+ - To start process digit in terminal  
+  `pm2 start ecosystem.config.js`
+ - To stop: 
+  `pm2 stop all` 
+   or 
+  `pm2 stop <process_id>` 
+   or 
+  `pm2 stop Client` 
+   or 
+  `pm2 stop Server`
+ - To delete process:
+  `pm2 delete all`
+  `pm2 delete <process_id>` 
+   or 
+  `pm2 delete Client` 
+   or 
+  `pm2 delete Server`
+ - To view list process: 
+   `pm2 list`
