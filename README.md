@@ -109,22 +109,22 @@ otherwise skip this step and start each process individually.
 
 For use PM2:
  - To start process digit in terminal  
-  * `pm2 start ecosystem.config.js`
+  * * `pm2 start ecosystem.config.js`
  - To stop: 
-  * `pm2 stop all` 
+  * * `pm2 stop all` 
    or 
-  * `pm2 stop <process_id>` 
+  * * `pm2 stop <process_id>` 
    or 
-  * `pm2 stop Client` 
+  * * `pm2 stop Client` 
    or 
-  * `pm2 stop Server`
+  * * `pm2 stop Server`
  - To delete process:
-  * `pm2 delete all`
+  * * `pm2 delete all`
   or
-  * `pm2 delete <process_id>` 
+  * * `pm2 delete <process_id>` 
    or 
-  * `pm2 delete Client` 
+  * * `pm2 delete Client` 
    or 
-  * `pm2 delete Server`
+  * * `pm2 delete Server`
  - To view list process: 
-   * `pm2 list`
+   * * `pm2 list`
