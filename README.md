@@ -127,4 +127,5 @@ For use PM2:
    or 
   - * `pm2 delete Server`
  - To view list process: 
-   - * `pm2 list`
+  - * `pm2 list` or
+  - * `pm2 ls`
