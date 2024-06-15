@@ -130,4 +130,5 @@ For use PM2:
   - * `pm2 list` or
   - * `pm2 ls`
 
-If you want start individually for Client: `cd client && npm run dev` and for Server: `cd server && npm start`
+If you want start individually for Client: `cd client && npm run dev` and for Server: `cd server && npm start` .
+Remember to install node_modules for client and server with command in specific folder: `npm install` .
