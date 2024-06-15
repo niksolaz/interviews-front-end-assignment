@@ -99,7 +99,7 @@ comments. Enable users to add comments and rate the recipe, displaying the avera
 comments.
 
 ## How to run
-For convenience I opted for a process manager [pm2](https://pm2.io/docs/runtime/overview/) to be able to start both Client and Server in a single command. 
+For convenience I opted for a process manager [pm2](https://pm2.io/docs/runtime/overview/) to be able to start both <b>client</b> and <b>server</b> in a single command. 
 It's not mandatory.
 So if you want install pm2 you can do this:
 ```
@@ -115,17 +115,19 @@ For use PM2:
    or 
   - * `pm2 stop <process_id>` 
    or 
-  - * `pm2 stop Client` 
+  - * `pm2 stop client` 
    or 
-  - * `pm2 stop Server`
+  - * `pm2 stop server`
  - To delete process:
   - * `pm2 delete all`
   or
   - * `pm2 delete <process_id>` 
    or 
-  - * `pm2 delete Client` 
+  - * `pm2 delete client` 
    or 
-  - * `pm2 delete Server`
+  - * `pm2 delete server`
  - To view list process: 
   - * `pm2 list` or
   - * `pm2 ls`
+
+If you want start individually for Client: `cd client && npm run dev` and for Server: `cd server && npm start`
