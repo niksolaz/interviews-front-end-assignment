@@ -24,8 +24,8 @@ export default function CardRecipe({id, name, ingredients, instructions, cuisine
           <p>{ instructions }</p>
           <div>
             <div className="grid grid-cols-4 gap-1">
-              {ingredients.map((ingredient) => (
-                <span className="w-40 truncate p-1 border rounded-3xl text-center">#{ingredient}</span>
+              {ingredients.map((ingredient,i) => (
+                <span className="w-40 truncate p-1 border rounded-3xl text-center" key={i}>#{ingredient}</span>
               ))}
             </div>
           </div>

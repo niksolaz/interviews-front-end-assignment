@@ -9,9 +9,9 @@ export default function Recipes() {
   const path = "http://localhost:8080" 
 
   useEffect(() => {
-    const getData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/recipes');
+        const response = await fetch(`${path}/recipes`);
         const data = await response.json();
         setRecipes(data);
       } catch (error) {
@@ -19,7 +19,7 @@ export default function Recipes() {
       }
     };
 
-    getData();
+    fetchData();
   }, []);
 
 
@@ -39,8 +39,8 @@ export default function Recipes() {
             <p>Error fetching recipes: {error.message}</p>
           ) : (
             <div className="space-y-3">
-              {recipes.map((recipe) => (
-                <CardRecipe image={`${path}${recipe.image}`} id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} instructions={recipe.instructions} cuisineId={recipe.cuisineId} dietId={recipe.dietId} difficultyId={recipe.difficultyId}/>
+              {recipes.map((recipe,i) => (
+                <CardRecipe image={`${path}${recipe.image}`} id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} instructions={recipe.instructions} cuisineId={recipe.cuisineId} dietId={recipe.dietId} difficultyId={recipe.difficultyId} key={i}/>
               ))}
             </div>
           )}
