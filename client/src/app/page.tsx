@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import WelcomeImg from '../assets/images/welcome.png'
 import LogoImg from '../assets/images/logo.png'
-import Button from '../components/button';
+import Button from '../components/Button';
 
 export default function Home() {
   return (
