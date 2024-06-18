@@ -5,11 +5,48 @@ import '../../app/globals.css';
 
 export default function Recipes() {
   const [recipes, setRecipes] = useState([]);
+  const [cuisines, setCuisines] = useState([]);
+  const [diets, setDiets] = useState([]);
+  const [difficulties, setDifficulties] = useState([]);
   const [error, setError] = useState(null);
   const path = "http://localhost:8080" 
 
+  const getCuisine = (cuisineId: string): any => {
+    return cuisines.find((c) => c.id === cuisineId).name
+  }
+
+  const getDiet = (dietId: string): any => {
+    return diets.find((d) => d.id === dietId).name
+  }
+
+  const getDifficulty = (difficultyId: string): any => {
+    return difficulties.find((d) => d.id === difficultyId).name
+  }
+
   useEffect(() => {
     const fetchData = async () => {
+      try {
+        const resCuisine = await fetch(`${path}/cuisines`);
+        const dataCuisines = await resCuisine.json();
+        console.log(dataCuisines)
+        setCuisines(dataCuisines);
+      } catch (error) {
+        console.error(error);
+      }
+      try {
+        const resDiets = await fetch(`${path}/diets`);
+        const dataDiets = await resDiets.json();
+        setDiets(dataDiets);
+      } catch (error) {
+        console.error(error);
+      }
+      try {
+        const resDifficulties = await fetch(`${path}/difficulties`);
+        const dataDifficulties = await resDifficulties.json();
+        setDifficulties(dataDifficulties);
+      } catch (error) {
+        console.error(error);
+      }
       try {
         const response = await fetch(`${path}/recipes`);
         const data = await response.json();
@@ -40,7 +77,7 @@ export default function Recipes() {
           ) : (
             <div className="space-y-3">
               {recipes.map((recipe,i) => (
-                <CardRecipe image={`${path}${recipe.image}`} id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} instructions={recipe.instructions} cuisineId={recipe.cuisineId} dietId={recipe.dietId} difficultyId={recipe.difficultyId} key={i}/>
+                <CardRecipe image={`${path}${recipe.image}`} id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} instructions={recipe.instructions} cuisine={getCuisine(recipe.cuisineId)} diet={getDiet(recipe.dietId)} difficulty={getDifficulty(recipe.difficultyId)} key={i}/>
               ))}
             </div>
           )}
