@@ -68,7 +68,30 @@ export default function Recipes() {
       <div className="flex space-x-2 p-4">
         <section className="w-1/3">
           <h1 className="text-3xl">filters</h1>
-          <div className="border rounded-xl h-full"></div>
+          <div className="border rounded-xl h-full px-4">
+            <div>
+              <h4 className="font-semibold text-lg">Search Name</h4>
+              <input type="text" className="border border-gray-200 p-2 rounded-3xl w-full" />
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg">Filter by Cuisine</h4>
+              <select className="border border-gray-200 p-2 rounded-3xl w-full">
+                <option value="1">...</option>
+              </select>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg">Filter by Diet</h4>
+              <select className="border border-gray-200 p-2 rounded-3xl w-full">
+                <option value="1">...</option>
+              </select>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg">Filter by Difficulty</h4>
+              <select className="border border-gray-200 p-2 rounded-3xl w-full">
+                <option value="1">...</option>
+              </select>
+            </div>
+          </div>
         </section>
         <section className="w-2/3">
           <h1 className="text-3xl">List Recipes</h1>
