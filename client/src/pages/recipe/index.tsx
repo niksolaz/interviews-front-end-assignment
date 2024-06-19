@@ -6,6 +6,7 @@ import '../../app/globals.css';
 export default function Recipes() {
   const [recipes, setRecipes] = useState([]);
   const [cuisines, setCuisines] = useState([]);
+  const [selectedCuisine, setSelectedCuisine] = useState("0"); 
   const [diets, setDiets] = useState([]);
   const [difficulties, setDifficulties] = useState([]);
   const [error, setError] = useState(null);
@@ -22,6 +23,24 @@ export default function Recipes() {
   const getDifficulty = (difficultyId: string): any => {
     return difficulties.find((d) => d.id === difficultyId).name
   }
+
+  type TSelectcion = {
+    target: {
+      value: string
+    }
+  }
+
+  const handleSelectedCuisine = (e: TSelectcion): any => {
+    setSelectedCuisine(e.target.value)
+  }
+
+  const filteredRecipes = recipes.filter((recipe) => {
+    if(selectedCuisine === '0') {
+      return true;
+    }
+    return recipe.cuisineId === selectedCuisine;
+  })
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,8 +94,19 @@ export default function Recipes() {
             </div>
             <div>
               <h4 className="font-semibold text-lg">Filter by Cuisine</h4>
-              <select className="border border-gray-200 p-2 rounded-3xl w-full">
-                <option value="1">...</option>
+              <select 
+                className="border border-gray-200 p-2 rounded-3xl w-full"
+                value={selectedCuisine}
+                onChange={handleSelectedCuisine}
+              >
+                <option value="0">...</option>
+                {
+                  cuisines.map((c,i) => {
+                    return (
+                      <option value={c.id} key={i}>{c.name}</option>
+                    )
+                  })
+                }
               </select>
             </div>
             <div>
@@ -99,8 +129,18 @@ export default function Recipes() {
             <p>Error fetching recipes: {error.message}</p>
           ) : (
             <div className="space-y-3">
-              {recipes.map((recipe,i) => (
-                <CardRecipe image={`${path}${recipe.image}`} id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} instructions={recipe.instructions} cuisine={getCuisine(recipe.cuisineId)} diet={getDiet(recipe.dietId)} difficulty={getDifficulty(recipe.difficultyId)} key={i}/>
+              {filteredRecipes.map((recipe,i) => (
+                <CardRecipe 
+                  image={`${path}${recipe.image}`} 
+                  id={recipe.id} 
+                  name={recipe.name} 
+                  ingredients={recipe.ingredients} 
+                  instructions={recipe.instructions} 
+                  cuisine={getCuisine(recipe.cuisineId)} 
+                  diet={getDiet(recipe.dietId)} 
+                  difficulty={getDifficulty(recipe.difficultyId)} 
+                  key={i}
+                />
               ))}
             </div>
           )}
