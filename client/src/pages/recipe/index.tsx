@@ -8,19 +8,21 @@ export default function Recipes() {
   const [cuisines, setCuisines] = useState([]);
   const [selectedCuisine, setSelectedCuisine] = useState("0"); 
   const [diets, setDiets] = useState([]);
+  const [selectedDiet, setSelectedDiet] = useState("0"); 
   const [difficulties, setDifficulties] = useState([]);
+  const [selectedDifficulty, setSelectedDifficulty] = useState("0"); 
   const [error, setError] = useState(null);
   const path = "http://localhost:8080" 
 
-  const getCuisine = (cuisineId: string): any => {
+  const getCuisine = (cuisineId: string) => {
     return cuisines.find((c) => c.id === cuisineId).name
   }
 
-  const getDiet = (dietId: string): any => {
+  const getDiet = (dietId: string) => {
     return diets.find((d) => d.id === dietId).name
   }
 
-  const getDifficulty = (difficultyId: string): any => {
+  const getDifficulty = (difficultyId: string) => {
     return difficulties.find((d) => d.id === difficultyId).name
   }
 
@@ -34,11 +36,26 @@ export default function Recipes() {
     setSelectedCuisine(e.target.value)
   }
 
-  const filteredRecipes = recipes.filter((recipe) => {
-    if(selectedCuisine === '0') {
-      return true;
-    }
-    return recipe.cuisineId === selectedCuisine;
+  const handleSelectedDiet = (e: TSelectcion): any => {
+    setSelectedDiet(e.target.value)
+  }
+
+  const handleSelectedDifficulty = (e: TSelectcion): any => {
+    setSelectedDifficulty(e.target.value)
+  }
+
+  type TRecipe = {
+    cuisineId: string;
+    dietId: string;
+    difficultyId: string;
+  }
+
+  const filteredRecipes = recipes.filter((recipe: TRecipe) => {
+    return (
+      (selectedCuisine === "0" || recipe.cuisineId === selectedCuisine) &&
+      (selectedDiet === "0" || recipe.dietId === selectedDiet) &&
+      (selectedDifficulty === "0" || recipe.difficultyId === selectedDifficulty)
+    )
   })
 
 
@@ -111,14 +128,32 @@ export default function Recipes() {
             </div>
             <div>
               <h4 className="font-semibold text-lg">Filter by Diet</h4>
-              <select className="border border-gray-200 p-2 rounded-3xl w-full">
-                <option value="1">...</option>
+              <select 
+                className="border border-gray-200 p-2 rounded-3xl w-full"
+                value={selectedDiet}
+                onChange={handleSelectedDiet}
+              >
+                <option value="0">...</option>
+                {
+                  diets.map((d, i) => (
+                    <option value={d.id} key={i}>{d.name}</option>
+                  ))
+                }
               </select>
             </div>
             <div>
               <h4 className="font-semibold text-lg">Filter by Difficulty</h4>
-              <select className="border border-gray-200 p-2 rounded-3xl w-full">
-                <option value="1">...</option>
+              <select 
+                className="border border-gray-200 p-2 rounded-3xl w-full"
+                value={selectedDifficulty}
+                onChange={handleSelectedDifficulty}
+              >
+                <option value="0">...</option>
+                {
+                  difficulties.map((d, i) => (
+                    <option value={d.id} key={i}>{d.name}</option>
+                  ))
+                }
               </select>
             </div>
           </div>
