@@ -11,8 +11,10 @@ export default function Recipes() {
   const [selectedDiet, setSelectedDiet] = useState("0"); 
   const [difficulties, setDifficulties] = useState([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState("0"); 
+  const [searchName, setSearchName] = useState('');
   const [error, setError] = useState(null);
-  const path = "http://localhost:8080" 
+  
+  const path = "http://localhost:8080" // qui potremmo inserire un variabile env
 
   const getCuisine = (cuisineId: string) => {
     return cuisines.find((c) => c.id === cuisineId).name
@@ -44,6 +46,10 @@ export default function Recipes() {
     setSelectedDifficulty(e.target.value)
   }
 
+  const handleSearchName = (e: TSelectcion): any => {
+    setSearchName(e.target.value)
+  }
+
   type TRecipe = {
     cuisineId: string;
     dietId: string;
@@ -54,7 +60,8 @@ export default function Recipes() {
     return (
       (selectedCuisine === "0" || recipe.cuisineId === selectedCuisine) &&
       (selectedDiet === "0" || recipe.dietId === selectedDiet) &&
-      (selectedDifficulty === "0" || recipe.difficultyId === selectedDifficulty)
+      (selectedDifficulty === "0" || recipe.difficultyId === selectedDifficulty) &&
+      (searchName === '' || recipe.name.toLowerCase().includes(searchName.toLowerCase()))
     )
   })
 
@@ -107,7 +114,12 @@ export default function Recipes() {
           <div className="border rounded-xl h-full px-4">
             <div>
               <h4 className="font-semibold text-lg">Search Name</h4>
-              <input type="text" className="border border-gray-200 p-2 rounded-3xl w-full" />
+              <input 
+                type="text" 
+                className="border border-gray-200 p-2 rounded-3xl w-full" 
+                value={searchName}
+                onChange={handleSearchName}
+              />
             </div>
             <div>
               <h4 className="font-semibold text-lg">Filter by Cuisine</h4>
