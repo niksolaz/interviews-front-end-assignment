@@ -52,6 +52,9 @@ export default function Recipe() {
         <Button label="List recipe" url={"/recipe"} />
       </div>
       <section className="p-24">
+        <div className="flex items-center justify-end py-10 px-4">
+          <Button label="modify" url={`/recipe/create/${id}`} />
+        </div>
         {error ? (
           <p>Error fetching recipes: {error.message}</p>
         ) : (
