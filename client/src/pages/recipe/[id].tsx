@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Button from '../../components/Button'
 import '../../app/globals.css';
 
 export default function Recipe() {
@@ -46,8 +47,11 @@ export default function Recipe() {
   }, [id]);
 
   return (
-    <main className="p-24">
-      <section>
+    <main className="min-h-screen">
+      <div className="w-full border py-10 px-4">
+        <Button label="List recipe" url={"/recipe"} />
+      </div>
+      <section className="p-24">
         {error ? (
           <p>Error fetching recipes: {error.message}</p>
         ) : (
