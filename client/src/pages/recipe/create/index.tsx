@@ -9,7 +9,7 @@ export default function CreateRecipe() {
       </div>
       <section className="space-y-5 w-2/3 p-24">
         <h1 className="text-2xl font-semibold text-gray-800">Create Recipe</h1>
-        <form>
+        <div>
           <div className="space-y-1 py-3">
             <label className="text-lg font-semibold text-gray-800 block">Name</label>
             <input type="text" placeholder="insert name" className="border border-gray-200 shadow p-3 rounded-lg w-1/3" />
@@ -56,7 +56,7 @@ export default function CreateRecipe() {
               reset
             </button>
           </div>
-        </form>
+        </div>
       </section>
     </main>
   );
