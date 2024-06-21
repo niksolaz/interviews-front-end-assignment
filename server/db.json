@@ -8,7 +8,9 @@
         "Eggs",
         "Parmesan Cheese",
         "Pancetta",
-        "Black Pepper"
+        "Black Pepper",
+        "cheese",
+        "Zenzero"
       ],
       "instructions": "Boil the spaghetti. Fry the pancetta. Mix eggs and cheese. Combine all.",
       "cuisineId": "1",

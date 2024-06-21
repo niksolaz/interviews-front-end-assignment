@@ -71,10 +71,10 @@ export default function UpdateRecipe() {
     }
   ])
 
-  const postData = async (updatedRecipe) => {
+  const putData = async (updatedRecipe) => {
     try {
       return await fetch(`${path}/recipes/${id}`, { 
-        method: 'POST', 
+        method: 'PUT', 
         headers: {
           'Content-Type': 'application/json',
         },
@@ -96,7 +96,7 @@ export default function UpdateRecipe() {
         ingredients: [...(recipe.ingredients || []), ingredientInput.trim()],
       };
       setRecipe(updatedRecipe);
-      postData(updatedRecipe);
+      // putData(updatedRecipe);
       setIngredientInput('');
     }
   };
@@ -127,8 +127,8 @@ export default function UpdateRecipe() {
 
   const onSave = async () => {
     try {
-      await postData(recipe);
-      router.push('/recipe');
+      await putData(recipe);
+      // router.push('/recipe');
     } catch(error) {
       console.error(error)
     }
